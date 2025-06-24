@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/nav.astro";
+import Home from "@/components/home.astro";
+import Projects from "@/components/projects.astro";
+import Contact from "@/components/contact.astro";
+import Footer from "@/components/footer.astro";
+import SplashCursor from "../React/SplashCursor";
+
+import favicon from "/favicons/main.ico";
+---
+
+<Layout title="Aman Kumar Pandey | Home" favicon={favicon}>
+  <div class="absolute inset-0 -z-10">
+    <SplashCursor client:load />
+  </div>
+  <Nav />
+  <div class="relative z-10">
+    <Home />
+    <Projects />
+    <Contact />
+  </div>
+  <Footer />
+</Layout>

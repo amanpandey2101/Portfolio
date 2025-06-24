@@ -1,0 +1,137 @@
+---
+"use client";
+
+import Nav from "@/components/nav.astro";
+import Layout from "@/layouts/Layout.astro";
+import favicon from "/favicons/main.ico";
+import Folder from "../../React/Folder";
+import SplashCursor from "../../React/SplashCursor";
+
+const folders = [
+    // {
+    //     color: "#18181b90",
+    //     images: [
+    //         "/projects/aiml/sleep.png",
+    //         "/projects/aiml/insaights.png",
+    //         "/projects/aiml/mediapipe.png",
+    //     ],
+    //     icon: "/icons/ml.png",
+    //     label: "Machine Learning",
+    //     link: "/projects/aiml",
+    // },
+    // {
+    //     color: "#18181b90",
+    //     images: [
+    //         "/projects/omdena/smol/rwanda-chapter.png",
+    //         "/projects/omdena/smol/vitb-chapter.png",
+    //         "/projects/omdena/smol/toronto-chapter.png",
+    //     ],
+    //     icon: "/icons/omdena.png",
+    //     label: "Omdena",
+    //     link: "/projects/omdena",
+    // },
+    {
+        color: "#18181b90",
+        images: [
+            "/projects/web/gfg.png",
+            "/projects/web/man.png",
+            "/projects/web/baatcheet.png",
+        ],
+        icon: "/icons/react.png",
+        label: "Web Development",
+        link: "/projects/web",
+    },
+    // {
+    //     color: "#18181b90",
+    //     images: [
+    //         "/projects/app/drishti.png",
+    //         "/projects/app/hastakriti.png",
+    //         "/projects/app/lo62.png",
+    //     ],
+    //     icon: "/icons/app.png",
+    //     label: "App Development",
+    //     link: "/projects/app",
+    // },
+    // {
+    //     color: "#18181b90",
+    //     images: [
+    //         "/projects/hardware/lo62.png",
+    //         "/projects/hardware/hastakriti.png",
+    //         "/projects/hardware/drishti.png",
+    //     ],
+    //     icon: "/icons/iot.png",
+    //     label: "Hardware & IoT",
+    //     link: "/projects/hard",
+    // },
+    // {
+    //     color: "#18181b90",
+    //     images: [
+    //         "/projects/pip/rcps.png",
+    //         "/projects/pip/hlokty.png",
+    //         "/projects/pip/disdial.png",
+    //     ],
+    //     icon: "/icons/python.png",
+    //     label: "Python Packages",
+    //     link: "/projects/pip",
+    // },
+    {
+        color: "#18181b90",
+        images: [
+            "/projects/misc/lemme.png",
+            "/projects/misc/lemme.png",
+            "/projects/misc/ppup.png",
+        ],
+        icon: "/icons/misc.png",
+        label: "AI SaaS",
+        link: "/projects/misc",
+    },
+    {
+        color: "#18181b90",
+        images: [
+            "/projects/misc/lemme.png",
+            "/projects/misc/lemme.png",
+            "/projects/misc/ppup.png",
+        ],
+        icon: "/icons/misc.png",
+        label: "Shopify",
+        link: "/projects/misc",
+    },
+];
+---
+
+<Nav />
+<Layout title="Arpit Sengar | Projects" favicon={favicon}>
+    <section
+        class="w-full min-h-screen bg-[#101010] flex items-center justify-center text-[var(--white)] my-12 md:mt-0"
+        id="home"
+    >
+        <!-- <div class="absolute inset-0 w-screen h-screen">
+            <Aurora
+                client:only="react"
+                colorStops={["#00d8ff", "#7cff67", "#00d8ff"]}
+                blend={0.8}
+                amplitude={1.5}
+                speed={0.3}
+            />
+        </div> -->
+        <div class="absolute inset-0 z-10">
+            <SplashCursor client:load />
+        </div>
+        <div class="grid lg:grid-cols-4 sm:grid-cols-2 gap-48 pt-12 z-10">
+            {
+                folders.map((folder) => (
+                    <Folder
+                        client:load
+                        size={2}
+                        color={folder.color}
+                        images={folder.images}
+                        icon={folder.icon}
+                        label={folder.label}
+                        className="custom-folder w-full"
+                        link={folder.link}
+                    />
+                ))
+            }
+        </div>
+    </section>
+</Layout>

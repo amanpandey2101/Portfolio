@@ -1,0 +1,180 @@
+---
+import { Image } from "astro:assets";
+import SpotlightCard from "../React/SpotlightCard.tsx";
+// We'll use placeholder images for now since the actual project images aren't available
+// You can replace these with actual project screenshots later
+
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  link: string;
+  preview: string;
+  status: string;
+  dateRange: string;
+  isLive: boolean;
+}
+
+const projects: Project[] = [
+  {
+    title: "AI Github Saas",
+    description: "AI-powered GitHub SaaS tool where users can link repositories, ask natural language questions, get code level answers with file highlights, collaborate with others, and auto-generate issue summaries from meeting audio.",
+    technologies: ["NextJS", "Langchain", "AssemblyAI"],
+    link: "https://github.com/amanpandey2101/ai-github-saas",
+    preview: "https://ai-github-saas.vercel.app",
+    status: "Live",
+    dateRange: "Apr 2025 - May 2025",
+    isLive: true,
+  },
+  {
+    title: "Jora (NextJS, Clerk and NeonDB)",
+    description: "Jora, a personal project replicating Jira's core functionalities. This application was created utilizing Next.js for the frontend, Clerk for user authentication, and NeonDB for robust data persistence.",
+    technologies: ["NextJS", "Clerk", "NeonDB"],
+    link: "https://github.com/amanpandey2101/jora",
+    preview: "https://jora-project.vercel.app",
+    status: "Live",
+    dateRange: "Feb 2025 - April 2025",
+    isLive: true,
+  },
+  {
+    title: "Coin Transact Web3 dApp",
+    description: "Implemented MetaMask wallet integration using Solidity and Ganache to enable Ethereum transactions with transaction linked GIFs.",
+    technologies: ["Solidity", "MetaMask", "Ganache", "Ethereum"],
+    link: "https://github.com/amanpandey2101/coin-transact-web3",
+    preview: "https://coin-transact-web3.vercel.app",
+    status: "Live",
+    dateRange: "Jan 2024 - Feb 2024",
+    isLive: true,
+  },
+  {
+    title: "HAKS - Indian Army BraveHearts App",
+    description: "Delivered a MERN + React Native app to streamline martyr records, benefits, and grievance workflows for BC/PC casualties. Officially recognized by Indian Army.",
+    technologies: ["MERN Stack", "React Native"],
+    link: "https://github.com/amanpandey2101/haks-app",
+    preview: "#",
+    status: "Private - Indian Army Recognition",
+    dateRange: "Apr 2023 - May 2024",
+    isLive: false,
+  },
+];
+---
+<head>
+  <title>Aman Kumar Pandey | Projects</title>
+  <link rel="icon" href="/favicons/main.ico" />
+</head>
+<section
+  id="projects"
+  class="py-12 text-white"
+>
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My work</h2>
+    <h3 class="text-4xl md:text-5xl font-medium mb-8">Featured Projects</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2  gap-8">
+      {
+        projects.map((project) => (
+          <SpotlightCard 
+            client:load
+            className="custom-spotlight-card group p-0 bg-[#0a0a0a] border-[var(--white-icon-tr)]"
+            spotlightColor="rgba(0, 229, 255, 0.2)"
+          >
+            <div class="relative">
+              {/* Project Header Image */}
+              <div class="w-full h-48 md:h-56 bg-gradient-to-br from-[#5e4491] to-[#A476FF] flex items-center justify-center relative overflow-hidden rounded-t-2xl">
+                {/* Project Icon/Placeholder */}
+                <div class="text-6xl font-bold text-white/20 absolute inset-0 flex items-center justify-center">
+                  {project.title.split(' ').map(word => word[0]).join('').toUpperCase()}
+                </div>
+                <div class="absolute inset-0 bg-black/20"></div>
+                <div class="relative z-10 text-center text-white">
+                  <div class="text-xl md:text-2xl font-bold mb-2">{project.title}</div>
+                  <div class="text-sm opacity-80">{project.dateRange}</div>
+                </div>
+                {project.isLive && (
+                  <div class="absolute top-4 right-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                    LIVE
+                  </div>
+                )}
+              </div>
+
+              {/* Project Content */}
+              <div class="p-6">
+                <div class="mb-6">
+                  <h4 class="text-xl md:text-2xl font-semibold text-white mb-3">{project.title}</h4>
+                  <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech) => (
+                      <span class="px-3 py-1 bg-[var(--sec)] bg-opacity-20 text-white rounded-full text-xs font-medium border border-[var(--sec)] border-opacity-30">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <span class="text-sm text-gray-400 font-medium">
+                    {project.status}
+                  </span>
+                </div>
+
+                {/* Action Buttons */}
+                <div class="flex gap-3">
+                  <a
+                    target="_blank"
+                    href={project.link}
+                    aria-label="GitHub Repository"
+                    class="flex-1 flex justify-center items-center gap-2 text-gray-300 hover:text-white transition duration-300 ease-in-out border border-gray-600 hover:border-gray-400 p-3 rounded-xl bg-gray-800/50 hover:bg-gray-700/50"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      class="size-5"
+                    >
+                      <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z" />
+                    </svg>
+                    <span class="text-sm">Code</span>
+                  </a>
+                  {project.isLive && project.preview !== "#" && (
+                    <a
+                      target="_blank"
+                      href={project.preview}
+                      aria-label="Live Preview"
+                      class="flex-1 flex justify-center items-center gap-2 text-gray-300 hover:text-white transition duration-300 ease-in-out border border-[var(--sec)] hover:border-[var(--sec)] p-3 rounded-xl bg-[var(--sec)]/10 hover:bg-[var(--sec)]/20"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="size-5"
+                      >
+                        <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" />
+                      </svg>
+                      <span class="text-sm">Live</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </SpotlightCard>
+        ))
+      }
+    </div>
+    <a
+      href="/projects"
+      aria-label="View All Projects"
+      class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+    >
+      <span class="md:text-lg text-md">View All Projects</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="size-6"
+      >
+        <path
+          d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
+        ></path>
+      </svg>
+    </a>
+  </div>
+</section>

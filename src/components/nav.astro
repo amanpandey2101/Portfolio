@@ -1,0 +1,496 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+  icon: string;
+}
+
+const navItems: NavItem[] = [
+  {
+    label: "Home",
+    href: "/",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749C11.7472 2.19663 12.2528 2.19663 12.6139 2.47749L20.6139 8.69972C20.8575 8.88917 21 9.18048 21 9.48907V20ZM19 19V9.97815L12 4.53371L5 9.97815V19H19Z"></path></svg>`,
+  },
+  {
+    label: "Projects",
+    href: "/projects",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2 3 3 3H10.4142L12.4142 5Z"></path></svg>`,
+  },
+  // {
+  //   label: "Experience",
+  //   href: "/experience",
+  //   icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2 3 3 3H10.4142L12.4142 5Z"></path></svg>`,
+  // },
+  {
+    label: "Resume",
+    href: "https://github.com/amanpandey2101/resume/blob/main/Aman_Kumar_Pandey_Resume.pdf",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8"/></svg>`,
+  },
+  {
+    label: "Links",
+    href: "/links",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142L12.4142 5Z"></path></svg>`,
+  },
+  {
+    label: "Contact",
+    href: "/#contact",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M21.7267 2.95694L16.2734 22.0432C16.1225 22.5716 15.7979 22.5956 15.5563 22.1126L11 13L1.9229 9.36919C1.41322 9.16532 1.41953 8.86022 1.95695 8.68108L21.0432 2.31901C21.5716 2.14285 21.8747 2.43866 21.7267 2.95694ZM19.0353 5.09647L6.81221 9.17085L12.4488 11.4255L15.4895 17.5068L19.0353 5.09647Z"></path></svg>`,
+  },
+];
+---
+
+<div class="flex justify-center w-full">
+  <nav
+    id="main-nav"
+    class="fixed flex left-0 right-0 z-[100] bg-[rgba(20,20,20,0.85)] border border-t border-[#ffffff15] text-[var(--white)] backdrop-blur-2xl transition-all md:top-0 md:bottom-auto bottom-0 md:w-[48rem] rounded-t-3xl md:rounded-3xl md:mt-6 md:justify-self-center shadow-2xl"
+  >
+    <div 
+      class="container mx-auto flex justify-center items-center md:py-3 py-4 px-4 relative"
+    >
+      <!-- Sliding Active Indicator -->
+      <div 
+        id="nav-indicator" 
+        class="absolute bg-gradient-to-r from-[var(--sec)] to-[#ec4899] rounded-xl transition-all duration-500 ease-out opacity-0 md:h-10 h-16 z-0 shadow-lg"
+        style="transform: translateX(0px); width: auto;"
+      ></div>
+      
+      <ul
+        class="flex w-full justify-between md:space-x-4 md:justify-center md:gap-8 gap-6 relative z-10"
+      >
+        {
+          navItems.map((item, index) => (
+            <li class="flex-1 md:flex-none">
+              <a
+                href={item.href}
+                data-nav-item={index}
+                class="nav-link flex flex-col items-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-colors text-sm md:text-base relative md:px-4 px-3 md:py-2 py-3 rounded-xl group"
+                target={item.href.startsWith('http') ? '_blank' : '_self'}
+                rel={item.href.startsWith('http') ? 'noopener noreferrer' : ''}
+              >
+                <span class="md:hidden flex items-center justify-center w-6 h-6 group-hover:scale-110 transition-transform duration-200">
+                  <fragment set:html={item.icon} />
+                </span>
+                <span class="hidden md:inline-block font-semibold tracking-wide">{item.label}</span>
+                <span class="md:hidden text-xs font-medium">{item.label}</span>
+                
+                <!-- Hover glow effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-[var(--sec)] to-[#ec4899] rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"></div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+<script>
+  // Enhanced Navigation with GSAP animations
+  window.addEventListener('load', () => {
+    const gsap = window['gsap'];
+    if (!gsap) {
+      console.error('GSAP not loaded');
+      return;
+    }
+    
+    const navLinks = document.querySelectorAll(".nav-link");
+    const navIndicator = document.getElementById("nav-indicator");
+    const sections = document.querySelectorAll("section[id]");
+    let currentActiveIndex = 0;
+    
+    // Initialize navbar with entrance animation
+    gsap.fromTo('#main-nav', 
+      { 
+        y: -100, 
+        opacity: 0 
+      },
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 1,
+        ease: "back.out(1.7)",
+        delay: 0.5
+      }
+    );
+    
+    // Initialize indicator position with animation
+    const initializeIndicator = () => {
+      const activeLink = document.querySelector('.nav-link.active') || navLinks[0];
+      if (activeLink && navIndicator) {
+        const rect = activeLink.getBoundingClientRect();
+        const navRect = document.getElementById('main-nav')?.getBoundingClientRect();
+        
+        if (navRect) {
+          const offsetX = rect.left - navRect.left;
+          const width = rect.width;
+          
+          // Initial setup with scale animation
+          gsap.set(navIndicator, {
+            x: offsetX,
+            width: width,
+            scale: 0,
+            opacity: 0
+          });
+          
+          gsap.to(navIndicator, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.6,
+            ease: "back.out(1.7)",
+            delay: 1.2
+          });
+        }
+      }
+    };
+    
+    // Enhanced indicator movement with elastic animation
+    const moveIndicator = (targetElement, index) => {
+      if (!targetElement || !navIndicator) return;
+      
+      const rect = targetElement.getBoundingClientRect();
+      const navRect = document.getElementById('main-nav')?.getBoundingClientRect();
+      
+      if (navRect) {
+        const offsetX = rect.left - navRect.left;
+        const width = rect.width;
+        
+        // Create elastic movement animation
+        gsap.to(navIndicator, {
+          x: offsetX,
+          width: width,
+          duration: 0.8,
+          ease: "elastic.out(1, 0.5)",
+          onStart: () => {
+            // Pulse effect during transition
+            gsap.to(navIndicator, {
+              scale: 1.05,
+              duration: 0.2,
+              yoyo: true,
+              repeat: 1,
+              ease: "power2.inOut"
+            });
+          }
+        });
+      }
+      
+      currentActiveIndex = index;
+    };
+    
+    // Enhanced active state updates with color animations
+    const updateActiveStates = (activeIndex) => {
+      navLinks.forEach((link, index) => {
+        link.classList.toggle('active', index === activeIndex);
+        
+        if (index === activeIndex) {
+          // Active state animations
+          gsap.to(link, { 
+            color: '#ffffff', 
+            scale: 1.02,
+            duration: 0.4,
+            ease: "back.out(1.7)"
+          });
+          
+          // Icon animation for mobile
+          const icon = link.querySelector('span:first-child');
+          if (icon) {
+            gsap.to(icon, {
+              scale: 1.1,
+              duration: 0.3,
+              ease: "back.out(1.7)"
+            });
+          }
+        } else {
+          // Inactive state animations
+          gsap.to(link, { 
+            color: 'var(--white-icon)', 
+            scale: 1,
+            duration: 0.3 
+          });
+          
+          // Reset icon scale for mobile
+          const icon = link.querySelector('span:first-child');
+          if (icon) {
+            gsap.to(icon, {
+              scale: 1,
+              duration: 0.3
+            });
+          }
+        }
+      });
+    };
+    
+    // Enhanced click effect with ripple animation
+    const createClickEffect = (element, event) => {
+      const rect = element.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      
+      // Create single ripple effect
+      const ripple = document.createElement('div');
+      ripple.style.cssText = `
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(164, 118, 255, 0.4), rgba(236, 72, 153, 0.2));
+        width: 20px;
+        height: 20px;
+        left: ${x - 10}px;
+        top: ${y - 10}px;
+        pointer-events: none;
+        z-index: 1000;
+      `;
+      
+      element.appendChild(ripple);
+      
+      // Ripple animation
+      gsap.fromTo(ripple, 
+        { 
+          scale: 0,
+          opacity: 0.8 
+        },
+        { 
+          scale: 3,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: () => {
+            ripple.remove();
+          }
+        }
+      );
+      
+      // Button press animation
+      gsap.to(element, {
+        scale: 0.95,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut",
+        transformOrigin: "center center"
+      });
+    };
+    
+    // Enhanced smooth scrolling with GSAP
+    const handleSmoothScroll = (targetId) => {
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        gsap.to(window, {
+          duration: 1.5,
+          scrollTo: {
+            y: targetElement,
+            offsetY: 100
+          },
+          ease: "power3.inOut"
+        });
+      }
+    };
+    
+    // Set active state based on current path or scroll position
+    const setActiveBasedOnLocation = () => {
+      const currentPath = window.location.pathname;
+      const currentHash = window.location.hash;
+      
+      let activeIndex = 0;
+      
+      navLinks.forEach((link, index) => {
+        const href = link.getAttribute("href");
+        
+        if (href === currentPath || 
+            href === currentPath + '/' || 
+            (currentPath === '/' && href?.startsWith('/#') && href.includes(currentHash.substring(1)))) {
+          activeIndex = index;
+        }
+      });
+      
+      updateActiveStates(activeIndex);
+      moveIndicator(navLinks[activeIndex], activeIndex);
+    };
+    
+    // Enhanced Intersection Observer for scroll-based highlighting
+    if (window.location.pathname === '/') {
+      const observerOptions = { 
+        threshold: 0.3,
+        rootMargin: '-100px 0px -50% 0px'
+      };
+      
+      const observerCallback = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            const activeLink = document.querySelector(`nav a[href="/#${id}"]`);
+            
+            if (activeLink) {
+              const index = Array.from(navLinks).indexOf(activeLink);
+              if (index !== -1 && index !== currentActiveIndex) {
+                updateActiveStates(index);
+                moveIndicator(activeLink, index);
+              }
+            }
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(observerCallback, observerOptions);
+      sections.forEach((section) => observer.observe(section));
+    }
+
+    // Enhanced click handlers with advanced animations
+    navLinks.forEach((link, index) => {
+      const linkElement = link;
+      if (linkElement instanceof HTMLElement) {
+        linkElement.style.position = 'relative';
+        linkElement.style.overflow = 'hidden';
+      }
+      
+      link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        
+        // Create enhanced click effect
+        createClickEffect(this, e);
+        
+        // Handle internal hash links
+        if (href?.startsWith("/#")) {
+          e.preventDefault();
+          const targetId = href.substring(2);
+          handleSmoothScroll(targetId);
+          history.pushState(null, '', href);
+        }
+        
+        // Update active state with animation
+        updateActiveStates(index);
+        moveIndicator(this, index);
+        
+        // Enhanced external link handling
+        if (href?.startsWith('http')) {
+          e.preventDefault();
+          
+          // Loading animation
+          gsap.to(this, {
+            scale: 1.05,
+            duration: 0.2,
+            yoyo: true,
+            repeat: 1,
+            onComplete: () => {
+              window.open(href, '_blank', 'noopener,noreferrer');
+            }
+          });
+        }
+      });
+      
+      // Enhanced hover effects
+      link.addEventListener("mouseenter", function() {
+        if (!this.classList.contains('active')) {
+          gsap.to(this, { 
+            color: 'var(--white)',
+            scale: 1.02,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+          
+          // Icon hover animation
+          const icon = this.querySelector('span:first-child');
+          if (icon) {
+            gsap.to(icon, {
+              scale: 1.1,
+              rotation: 3,
+              duration: 0.3,
+              ease: "back.out(1.7)"
+            });
+          }
+        }
+      });
+      
+      link.addEventListener("mouseleave", function() {
+        if (!this.classList.contains('active')) {
+          gsap.to(this, { 
+            color: 'var(--white-icon)',
+            scale: 1,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+          
+          // Reset icon animation
+          const icon = this.querySelector('span:first-child');
+          if (icon) {
+            gsap.to(icon, {
+              scale: 1,
+              rotation: 0,
+              duration: 0.3,
+              ease: "back.out(1.7)"
+            });
+          }
+        }
+      });
+    });
+    
+    // Initialize with delay for smooth entrance
+    setTimeout(() => {
+      initializeIndicator();
+      setActiveBasedOnLocation();
+    }, 200);
+    
+    // Handle browser navigation
+    window.addEventListener('popstate', setActiveBasedOnLocation);
+    
+    // Enhanced window resize handling
+    window.addEventListener('resize', () => {
+      const activeLink = document.querySelector('.nav-link.active');
+      if (activeLink) {
+        const index = Array.from(navLinks).indexOf(activeLink);
+        // Smooth reposition on resize
+        setTimeout(() => {
+          moveIndicator(activeLink, index);
+        }, 100);
+      }
+    });
+  });
+</script>
+
+<style>
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: 80px;
+    }
+  }
+
+  .nav-link.active {
+    color: #ffffff !important;
+  }
+  
+  .nav-link {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    transform: translateY(-1px);
+  }
+  
+  #nav-indicator {
+    box-shadow: 
+      0 4px 20px rgba(164, 118, 255, 0.3),
+      0 2px 8px rgba(236, 72, 153, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  #main-nav {
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.3),
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Smooth scrolling behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Enhanced glassmorphism */
+  #main-nav {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+</style>

@@ -1,0 +1,146 @@
+---
+import { inject } from "@vercel/analytics";
+import { fade } from "astro:transitions";
+import Aurora from "../React/Aurora.tsx";
+import ClickSpark from "@/React/ClickSpark";
+inject();
+
+// import DisableDevtool from 'disable-devtool';
+// if (!import.meta.env.SSR) {
+//   DisableDevtool();
+// }
+
+interface Props {
+  title: string;
+  favicon: string;
+}
+
+const { title, favicon } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Software Developer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href={favicon} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      />
+    </noscript>
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-[#0a0a0a] md:px-48 lg:px-20 px-9 overflow-x-hidden relative">
+    <ClickSpark
+  sparkColor='#fff'
+  sparkSize={10}
+  sparkRadius={15}
+  sparkCount={8}
+  duration={400}
+>
+    <!-- Aurora Background -->
+    <Aurora 
+      client:load
+      colorStops={["#6366f1", "#a855f7", "#ec4899"]}
+      amplitude={1.2}
+      blend={0.6}
+      speed={0.8}
+    />
+    
+    <!-- Main Content -->
+    <div class="relative z-10">
+      <slot />
+    </div>
+  </ClickSpark>
+    <!-- <Analytics /> -->
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --background: #0a0a0a;
+    --sec: #a476ff;
+    --white: #dfdfdf;
+    --white-icon: #f3f3f398;
+    --white-icon-tr: #f3f3f310;
+  }
+
+  * {
+    font-family:
+      "montserrat",
+      -apple-system,
+      system-ui,
+      sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  *::selection {
+    background-color: var(--sec);
+    color: var(--background);
+  }
+
+  /* Ensure content is visible over aurora */
+  body {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* Enhance backdrop blur for glassmorphism effects */
+  .bg-\[#1414149c\] {
+    background: rgba(20, 20, 20, 0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
+
+  /* Enhance other translucent backgrounds */
+  .bg-\[#0a0a0a\] {
+    background: rgba(10, 10, 10, 0.9) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(20, 20, 20, 0.3);
+    border-radius: 30px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(164, 118, 255, 0.6);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(164, 118, 255, 0.8);
+  }
+
+  /* Scrollbar styles for Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(164, 118, 255, 0.6) rgba(20, 20, 20, 0.3);
+  }
+</style>
