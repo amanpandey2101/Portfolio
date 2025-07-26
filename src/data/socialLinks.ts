@@ -44,7 +44,6 @@ import { MenuItem } from "../React/InfiniteMenu";
 //     //   image: "/icons/hackerrank.png",
 //     // },
 
-
 //     {
 //       title: "Last.fm",
 //       description: "My music listening habits.",
@@ -77,14 +76,14 @@ import { MenuItem } from "../React/InfiniteMenu";
 //     // },
 //   ];
 
-export const socialLinks: MenuItem[]= [
+export const socialLinks: MenuItem[] = [
   {
     title: "linkedin",
     link: "https://www.linkedin.com/in/amanpandey2101/",
     image: "/icons/linkedin.png",
     description: "Let's connect professionally.",
   },
-  { title: "github", link: "https://github.com/amanpandey2101", image: "/icons/github.png", description: "This is where my code lives." },
+
   {
     title: "email",
     link: "https://mail.google.com/mail/?view=cm&fs=1&to=paman7681@gmail.com&su=Hey%20Aman!",
@@ -97,6 +96,22 @@ export const socialLinks: MenuItem[]= [
     image: "/icons/instagram.png",
     description: "Personal updates and moments.",
   },
-  { title: "youtube", link: "https://www.youtube.com/@amankrpandey21", image: "/icons/youtube.png", description: "Tech tutorials and projects." },
-  { title: "leetcode", link: "https://leetcode.com/u/amanpandey2101/", image: "/icons/leetcode.webp", description: "Problem solving and DSA practice." },
+  {
+    title: "youtube",
+    link: "https://www.youtube.com/@amankrpandey21",
+    image: "/icons/youtube.png",
+    description: "Tech tutorials and projects.",
+  },
+  {
+    title: "github",
+    link: "https://github.com/amanpandey2101",
+    image: "/icons/github.png",
+    description: "This is where my code lives.",
+  },
+  {
+    title: "leetcode",
+    link: "https://leetcode.com/u/amanpandey2101/",
+    image: "/icons/leetcode.webp",
+    description: "Problem solving and DSA practice.",
+  },
 ];
