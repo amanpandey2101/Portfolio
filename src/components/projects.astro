@@ -64,11 +64,11 @@ const projects: Project[] = [
 </head>
 <section
   id="projects"
-  class="py-12 text-white"
+  class="py-10 text-white"
 >
   <div class="max-w-7xl mx-auto">
     <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My work</h2>
-    <h3 class="text-4xl md:text-5xl font-medium mb-8">Featured Projects</h3>
+    <h3 class="text-3xl md:text-5xl font-medium mb-8 ">Featured Projects</h3>
 
     <div class="grid grid-cols-1 md:grid-cols-2  gap-8">
       {
@@ -80,7 +80,7 @@ const projects: Project[] = [
           >
             <div class="relative">
               {/* Project Header Image */}
-              <div class="w-full h-48 md:h-56 bg-gradient-to-br from-[#5e4491] to-[#A476FF] flex items-center justify-center relative overflow-hidden rounded-t-2xl">
+              <div class="w-full h-full py-10 md:h-56 bg-gradient-to-br from-[#5e4491] to-[#A476FF] flex items-center justify-center relative overflow-hidden rounded-t-2xl">
                 {/* Project Icon/Placeholder */}
                 <div class="text-6xl font-bold text-white/20 absolute inset-0 flex items-center justify-center">
                   {project.title.split(' ').map(word => word[0]).join('').toUpperCase()}
@@ -98,8 +98,8 @@ const projects: Project[] = [
               </div>
 
               {/* Project Content */}
-              <div class="p-6">
-                <div class="mb-6">
+              <div class="p-4">
+                <div class="mb-6 p-1">
                   <h4 class="text-xl md:text-2xl font-semibold text-white mb-3">{project.title}</h4>
                   <p class="text-sm text-gray-300 mb-4 leading-relaxed">
                     {project.description}
