@@ -7,202 +7,136 @@ import ShinyText from "@/React/ShinyText";
 
 import { Image } from "astro:assets";
 
-// Using placeholder images - replace with actual project screenshots when available
-import projectPlaceholder from "../../../public/projects/web/tech.png";
+import dashboard from "../../../public/projects/web/dashboard.jpg";
 
 interface Project {
-    title: string;
-    image: ImageMetadata;
-    link: string;
-    preview: string;
-    status: string;
-    technologies: string[];
-    description: string;
-    date: string;
+  title: string;
+  image: ImageMetadata;
+  link: string;
+  preview: string;
+  status: string;
+  technologies: string[];
+  description: string;
+  date: string;
 }
 
 const projects: Project[] = [
-    {
-        title: "AI Github SaaS",
-        image: projectPlaceholder as ImageMetadata,
-        link: "https://github.com/amanpandey2101/ai-github-saas",
-        preview: "https://ai-github-saas.vercel.app/",
-        status: "Live",
-        technologies: ["NextJS", "Langchain", "AssemblyAI", "OpenAI", "TypeScript"],
-        description: "AI-powered SaaS platform for GitHub repository analysis and documentation generation using advanced language models.",
-        date: "2024"
-    },
-    {
-        title: "Jora - Jira Clone",
-        image: projectPlaceholder as ImageMetadata,
-        link: "https://github.com/amanpandey2101/jora",
-        preview: "https://jora-clone.vercel.app/",
-        status: "Live",
-        technologies: ["NextJS", "Clerk", "NeonDB", "PostgreSQL", "Tailwind CSS"],
-        description: "Full-featured project management application inspired by Jira, with user authentication and database integration.",
-        date: "2024"
-    },
-    {
-        title: "Coin Transact Web3 dApp",
-        image: projectPlaceholder as ImageMetadata,
-        link: "https://github.com/amanpandey2101/coin-transact-web3",
-        preview: "https://coin-transact-web3.vercel.app/",
-        status: "Live",
-        technologies: ["Solidity", "MetaMask", "Ganache", "Web3.js", "React"],
-        description: "Decentralized application for cryptocurrency transactions with MetaMask integration and smart contract functionality.",
-        date: "2024"
-    },
-    {
-        title: "HAKS - Indian Army BraveHearts App",
-        image: projectPlaceholder as ImageMetadata,
-        link: "#",
-        preview: "#",
-        status: "Private",
-        technologies: ["MERN Stack", "React Native", "MongoDB", "Express", "Node.js"],
-        description: "Mobile application honoring Indian Army personnel with recognition and memorial features. Private repository due to sensitive nature.",
-        date: "2023"
-    },
-    {
-        title: "Portfolio Website",
-        image: projectPlaceholder as ImageMetadata,
-        link: "https://github.com/amanpandey2101/portfolio",
-        preview: "https://amanpandey-portfolio.vercel.app/",
-        status: "Live",
-        technologies: ["Astro", "React", "TypeScript", "Tailwind CSS", "Three.js"],
-        description: "Modern portfolio website showcasing projects and skills with interactive 3D elements and responsive design.",
-        date: "2024"
-    },
-    {
-        title: "Real-time Chat Application",
-        image: projectPlaceholder as ImageMetadata,
-        link: "https://github.com/amanpandey2101/realtime-chat",
-        preview: "https://realtime-chat-app.vercel.app/",
-        status: "Live",
-        technologies: ["MERN Stack", "Socket.io", "WebSockets", "JWT", "MongoDB"],
-        description: "Real-time messaging application with user authentication, group chats, and live notifications.",
-        date: "2023"
-    }
+  {
+    title: "HAKS - Indian Army BraveHearts admin Dashboard",
+    image: dashboard as ImageMetadata,
+    link: "#",
+    preview: "#",
+    status: "Private",
+    technologies: [
+      "MERN Stack",
+      "React Native",
+      "MongoDB",
+      "Express",
+      "Node.js",
+    ],
+    description:
+      "Mobile application honoring Indian Army personnel with recognition and memorial features. Private repository due to sensitive nature.",
+    date: "2023",
+  },
 ];
 ---
 
 <Nav />
-<Layout title="Aman Kumar Pandey | Web Development Projects" favicon={favicon}>
-    <div class="relative w-full min-h-screen bg-[#101010]">
-        <div class="absolute inset-0 z-10">
-            <SplashCursor client:load />
-        </div>
-        <section
-            class="relative z-20 w-full min-h-screen flex items-center justify-center text-[var(--white)] my-12 md:mt-0"
-            id="home"
-        >
-            <div class="max-w-6xl mx-auto lg:my-36 md:my-0 px-4">
-                <a href="/projects">
-                    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">
-                        Projects
-                    </h2>
-                </a>
-                <h3 class="text-4xl md:text-5xl font-medium mb-8">
-                    <ShinyText text="Web Development" />
-                </h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {
-                        projects.map((project) => (
-                            <div class="group bg-[#1414149c] rounded-2xl p-6 border border-[var(--white-icon-tr)] hover:bg-opacity-80 transition-all duration-300">
-                                <div class="mb-4">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <h4 class="text-xl font-semibold text-[var(--white)]">
-                                            {project.title}
-                                        </h4>
-                                        <div class="flex items-center gap-2">
-                                            <span class={`px-2 py-1 rounded-full text-xs font-medium ${
-                                                project.status === 'Live' 
-                                                    ? 'bg-green-500 bg-opacity-20 text-green-400' 
-                                                    : project.status === 'Private'
-                                                    ? 'bg-yellow-500 bg-opacity-20 text-yellow-400'
-                                                    : 'bg-blue-500 bg-opacity-20 text-blue-400'
-                                            }`}>
-                                                {project.status}
-                                            </span>
-                                            <span class="text-xs text-[var(--white-icon)]">
-                                                {project.date}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    
-                                    <p class="text-sm text-[var(--white-icon)] mb-4 leading-relaxed">
-                                        {project.description}
-                                    </p>
-                                    
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        {project.technologies.map((tech) => (
-                                            <span class="px-2 py-1 bg-[var(--sec)] bg-opacity-20 text-[var(--sec)] rounded-md text-xs font-medium">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                                
-                                <div class="flex gap-3">
-                                    {project.link !== '#' && (
-                                        <a
-                                            href={project.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label="View Source Code"
-                                            class="flex-1 flex justify-center items-center gap-2 py-2 px-4 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] rounded-lg bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 24 24"
-                                                fill="currentColor"
-                                                class="w-4 h-4"
-                                            >
-                                                <path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"></path>
-                                            </svg>
-                                            <span class="text-sm">Code</span>
-                                        </a>
-                                    )}
-                                    
-                                    {project.preview !== '#' && (
-                                        <a
-                                            href={project.preview}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label="Live Preview"
-                                            class="flex-1 flex justify-center items-center gap-2 py-2 px-4 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] rounded-lg bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 24 24"
-                                                fill="currentColor"
-                                                class="w-4 h-4"
-                                            >
-                                                <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" />
-                                            </svg>
-                                            <span class="text-sm">Live</span>
-                                        </a>
-                                    )}
-                                    
-                                    {project.link === '#' && project.preview === '#' && (
-                                        <div class="flex-1 flex justify-center items-center gap-2 py-2 px-4 text-[var(--white-icon)] opacity-50 border border-[var(--white-icon-tr)] rounded-lg bg-[#1414149c]">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 24 24"
-                                                fill="currentColor"
-                                                class="w-4 h-4"
-                                            >
-                                                <path d="M6 10V15H8V10H6ZM10 10V15H12V10H10ZM14 10V15H16V10H14ZM18 6V8H6V6H7V4C7 3.44772 7.44772 3 8 3H16C16.5523 3 17 3.44772 17 4V6H18ZM9 4V6H15V4H9Z"/>
-                                            </svg>
-                                            <span class="text-sm">Private Repository</span>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-        </section>
+<Layout title="Aman Kumar Pandey | Projects" favicon={favicon}>
+  <div class="relative w-full min-h-screen bg-[#101010]">
+    <div class="absolute inset-0 z-10">
+      <SplashCursor client:load />
     </div>
+    <section
+      class="relative z-20 w-full min-h-screen flex items-center justify-center text-[var(--white)] my-12 md:mt-0"
+      id="home"
+    >
+      <div class="max-w-5xl mx-auto lg:my-36 md:my-0">
+        <a href="/projects">
+          <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Projects</h2>
+        </a>
+        <h3 class="text-4xl md:text-5xl font-medium mb-8">
+          <ShinyText text="Web 2.0" />
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {
+            projects.map((project) => (
+              <div class="group rounded-2xl p-3 border border-[var(--white-icon-tr)] hover:bg-opacity-80 transition-all duration-300">
+                <div class="mb-4">
+                  <div class="flex flex-col items-center justify-between mb-3">
+                    <a
+                      href={project.preview}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block"
+                    >
+                      <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          class="w-full h-48 md:h-72 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <div class="flex items-center px-3 mb-2">
+                        <div class="flex-grow">
+                          <h4 class="text-lg font-semibold">{project.title}</h4>
+                          <span class="py-1 text-sm text-[var(--white-icon)] ">
+                            {project.status}
+                          </span>
+                        </div>
+                        <div class="flex gap-2 ml-auto">
+                          <a
+                            target="_blank"
+                            href={project.link}
+                            aria-label="GitHub"
+                            class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              class="size-7"
+                            >
+                              <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z" />
+                            </svg>
+                          </a>
+                          <a
+                            target="_blank"
+                            href={project.preview}
+                            aria-label="Preview"
+                            class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              class="size-7"
+                            >
+                              <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" />
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                    </a>
+                    {/* <p class="text-sm text-[var(--white-icon)] mb-4 leading-relaxed">
+                      {project.description}
+                    </p> */}
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      {project.technologies?.map((tech) => (
+                        <span class="px-2 py-1 bg-[var(--sec)] bg-opacity-20 text-[var(--sec)] rounded-md text-xs text-white font-medium">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
 </Layout>

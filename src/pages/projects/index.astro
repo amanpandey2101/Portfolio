@@ -33,7 +33,7 @@ const folders = [
     {
         color: "#18181b90",
         images: [
-            // "/projects/web/gfg.png",
+            "/projects/web/dashboard.jpg",
             // "/projects/web/man.png",
             // "/projects/web/baatcheet.png",
         ],
@@ -77,13 +77,14 @@ const folders = [
     {
         color: "#18181b90",
         images: [
-            // "/projects/misc/lemme.png",
-            // "/projects/misc/lemme.png",
+            "/projects/aiml/threddit-home.jpg",
+            "/projects/aiml/home-git.jpg",
+            "/projects/aiml/Jora.jpg",
             // "/projects/misc/ppup.png",
         ],
         icon: "/icons/misc.png",
         label: "AI SaaS",
-        link: "/projects/misc",
+        link: "/projects/ai",
     },
     {
         color: "#18181b90",
@@ -94,7 +95,7 @@ const folders = [
         ],
         icon: "/icons/misc.png",
         label: "Shopify",
-        link: "/projects/misc",
+        link: "/projects/shopify",
     },
 ];
 ---
@@ -122,7 +123,7 @@ const folders = [
                 folders.map((folder) => (
                     <Folder
                         client:load
-                        size={2}
+                        size={1.5}
                         color={folder.color}
                         images={folder.images}
                         icon={folder.icon}

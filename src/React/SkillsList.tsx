@@ -48,9 +48,8 @@ const SkillsList = () => {
 
   const skills = {
     "AI SaaS": [
-      "Document AI with OpenAI integration", 
+      "GenAI", 
       "LangChain for AI workflows",
-      "Natural language processing",
       "Model deployment and API integration",
       "AI-powered automation solutions",
     ],
@@ -61,13 +60,13 @@ const SkillsList = () => {
       "RESTful API design and implementation",
       "Database optimization (PostgreSQL, MongoDB)",
     ],
-    "Web3 & Blockchain": [
-      "Solidity smart contract development",
-      "MetaMask wallet integration",
-      "Ethereum dApp development",
-      "Web3 transaction handling",
-      "Decentralized application architecture",
-    ],
+    // "Web3 & Blockchain": [
+    //   "Solidity smart contract development",
+    //   "MetaMask wallet integration",
+    //   "Ethereum dApp development",
+    //   "Web3 transaction handling",
+    //   "Decentralized application architecture",
+    // ],
     "Mobile & Cloud": [
       "React Native mobile development",
       "Cloud deployment (AWS, Kubernetes)",

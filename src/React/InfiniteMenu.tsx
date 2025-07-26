@@ -712,7 +712,7 @@ class ArcballControl {
 
 // -------- InfiniteGridMenu --------
 
-interface MenuItem {
+export interface MenuItem {
     image: string;
     link: string;
     title: string;
