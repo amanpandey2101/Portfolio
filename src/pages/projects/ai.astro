@@ -9,6 +9,7 @@ import { Image } from "astro:assets";
 import threddit from "../../../public/projects/aiml/threddit-home.jpg";
 import answer from "../../../public/projects/aiml/home-git.jpg";
 import jora from "../../../public/projects/aiml/Jora.jpg";
+import scrapi from "../../../public/projects/aiml/home-hero.jpg";
 
 // Using placeholder images - replace with actual project screenshots when available
 
@@ -25,6 +26,16 @@ interface Project {
 }
 
 const projects: Project[] = [
+    {
+        title: "Scrapi - AI-Powered Web Scraping",
+        image: scrapi as ImageMetadata,
+        link: "https://github.com/amanpandey2101/scrapify",
+        preview: "https://scrapify-flow.vercel.app/",
+        status: "Live",
+        technologies: ["NextJS", "Shadcn UI", "NeonDB", "PostgreSQL", "Tailwind CSS", "React Flow","Clerk"],
+        description: "This is a highly customizable web scraper built with Next.js 14, PostgreSQL, Prisma, and React Flow. It enables users to create, manage, and execute complex web scraping workflows with a visual, no-code/low-code interface. The scraper comes with advanced features such as AI-based data extraction",
+        date: "2025"
+    },
     {
         title: "Threddit - Reddit Clone",
         image: threddit as ImageMetadata,
