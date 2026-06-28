@@ -1,35 +1,44 @@
 ---
-"use client";
-
 import Nav from "@/components/nav.astro";
 import Layout from "@/layouts/Layout.astro";
 import favicon from "/favicons/main.ico";
 import Folder from "../../React/Folder";
 import SplashCursor from "../../React/SplashCursor";
 
-const folders = [
-    // {
-    //     color: "#18181b90",
-    //     images: [
-    //         "/projects/aiml/sleep.png",
-    //         "/projects/aiml/insaights.png",
-    //         "/projects/aiml/mediapipe.png",
-    //     ],
-    //     icon: "/icons/ml.png",
-    //     label: "Machine Learning",
-    //     link: "/projects/aiml",
-    // },
-    // {
-    //     color: "#18181b90",
-    //     images: [
-    //         "/projects/omdena/smol/rwanda-chapter.png",
-    //         "/projects/omdena/smol/vitb-chapter.png",
-    //         "/projects/omdena/smol/toronto-chapter.png",
-    //     ],
-    //     icon: "/icons/omdena.png",
-    //     label: "Omdena",
-    //     link: "/projects/omdena",
-    // },
+interface FolderItem {
+    color: string;
+    images: string[];
+    icon: string;
+    label: string;
+    link: string;
+    blurb: string;
+}
+
+const folders: FolderItem[] = [
+    {
+        color: "#18181b90",
+        images: [
+            "/projects/aiml/home-git.jpg",
+            "/projects/aiml/home-hero.jpg",
+            "/projects/aiml/answer.jpg",
+        ],
+        icon: "/icons/python.png",
+        label: "AI & Backend Systems",
+        link: "/projects/systems",
+        blurb: "Agents, RAG & cloud/edge infra",
+    },
+    {
+        color: "#18181b90",
+        images: [
+            "/projects/aiml/Jora.jpg",
+            "/projects/aiml/home-git.jpg",
+            "/projects/aiml/threddit-home.jpg",
+        ],
+        icon: "/icons/globe.png",
+        label: "NextJS AI SaaS",
+        link: "/projects/ai",
+        blurb: "Full-stack AI products",
+    },
     {
         color: "#18181b90",
         images: [
@@ -40,98 +49,65 @@ const folders = [
         label: "MERN Stack",
         icon: "/icons/react.png",
         link: "/projects/web",
-    },
-    // {
-    //     color: "#18181b90",
-    //     images: [
-    //         "/projects/app/drishti.png",
-    //         "/projects/app/hastakriti.png",
-    //         "/projects/app/lo62.png",
-    //     ],
-    //     icon: "/icons/app.png",
-    //     label: "App Development",
-    //     link: "/projects/app",
-    // },
-    // {
-    //     color: "#18181b90",
-    //     images: [
-    //         "/projects/hardware/lo62.png",
-    //         "/projects/hardware/hastakriti.png",
-    //         "/projects/hardware/drishti.png",
-    //     ],
-    //     icon: "/icons/iot.png",
-    //     label: "Hardware & IoT",
-    //     link: "/projects/hard",
-    // },
-    // {
-    //     color: "#18181b90",
-    //     images: [
-    //         "/projects/pip/rcps.png",
-    //         "/projects/pip/hlokty.png",
-    //         "/projects/pip/disdial.png",
-    //     ],
-    //     icon: "/icons/python.png",
-    //     label: "Python Packages",
-    //     link: "/projects/pip",
-    // },
-    {
-        color: "#18181b90",
-        images: [
-            "/projects/aiml/Jora.jpg",
-            "/projects/aiml/home-git.jpg",
-            "/projects/aiml/home-hero.jpg",
-            "/projects/aiml/threddit-home.jpg",
-            // "/projects/misc/ppup.png",
-        ],
-        icon: "/icons/home-git.jpg",
-        label: "NextJS AI SaaS",
-        link: "/projects/ai",
+        blurb: "Web & mobile apps",
     },
     {
         color: "#18181b90",
         images: [
             "/projects/shopify/home.jpg",
-            "/projects/shopify/sxity9ine-2.jpg",
             "/projects/shopify/sxity9ine.jpg",
+            "/projects/shopify/home.jpg",
         ],
-        icon: "/icons/home.jpg",
+        icon: "/icons/misc.png",
         label: "Shopify",
         link: "/projects/shopify",
+        blurb: "E-commerce storefronts",
     },
 ];
 ---
 
-<Nav />
 <Layout title="Aman Kumar Pandey | Projects" favicon={favicon}>
+    <Nav />
+    <div class="absolute inset-0 -z-10">
+        <SplashCursor client:load />
+    </div>
+
     <section
-        class="w-full min-h-screen bg-[#101010] flex items-center justify-center text-[var(--white)] my-12 md:mt-0"
+        class="relative z-10 w-full min-h-screen flex flex-col items-center justify-center text-[var(--white)] px-4 py-28 md:py-24"
         id="home"
     >
-        <!-- <div class="absolute inset-0 w-screen h-screen">
-            <Aurora
-                client:only="react"
-                colorStops={["#00d8ff", "#7cff67", "#00d8ff"]}
-                blend={0.8}
-                amplitude={1.5}
-                speed={0.3}
-            />
-        </div> -->
-        <div class="absolute inset-0 z-10">
-            <SplashCursor client:load />
-        </div>
-        <div class="grid lg:grid-cols-4 sm:grid-cols-2 gap-48 md:pt-12 z-10">
+        <!-- Header -->
+        <header class="text-center max-w-2xl mb-20 md:mb-28">
+            <h2 class="text-lg text-[var(--sec)] mb-3 shiny-sec">My work</h2>
+            <h1 class="text-4xl md:text-6xl font-medium text-gradient w-fit mx-auto pb-1">
+                Projects
+            </h1>
+            <p class="text-[var(--white-icon)] mt-4 leading-relaxed">
+                A collection of things I've built — from AI infrastructure and autonomous
+                agents to full-stack products and storefronts. Pick a folder to explore.
+            </p>
+        </header>
+
+        <!-- Folder gallery -->
+        <div
+            class="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-24 md:gap-x-20 md:gap-y-28 place-items-center"
+        >
             {
                 folders.map((folder) => (
-                    <Folder
-                        client:load
-                        size={1.5}
-                        color={folder.color}
-                        images={folder.images}
-            
-                        label={folder.label}
-                        className="custom-folder w-full"
-                        link={folder.link}
-                    />
+                    <div class="flex flex-col items-center text-center gap-3">
+                        <Folder
+                            client:load
+                            size={1.4}
+                            color={folder.color}
+                            images={folder.images}
+                            label={folder.label}
+                            className="custom-folder"
+                            link={folder.link}
+                        />
+                        <p class="text-xs md:text-sm text-[var(--white-icon)] max-w-[10rem] mt-6 md:mt-8">
+                            {folder.blurb}
+                        </p>
+                    </div>
                 ))
             }
         </div>

@@ -1,0 +1,12 @@
+- Understand the existing architecture before writing code.
+- Analyze features, business logic, and component relationships first.
+- Reuse existing code instead of duplicating functionality.
+- Prioritize clean, modular, scalable architecture.
+- Follow SOLID, DRY, and KISS.
+- Keep functions focused and readable.
+- Write production-ready, secure, performant code.
+- Use short, precise comments only when they add value.
+- Preserve existing behavior unless instructed otherwise.
+- Ask questions if requirements are ambiguous.
+- Explain important design decisions briefly.
+- Never commit, push, merge, or delete without my explicit approval.

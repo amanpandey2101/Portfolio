@@ -16,7 +16,27 @@ interface Project {
 }
 
 const projects: Project[] = [
-{
+  {
+    title: "Memora.dev - AI Decision Intelligence",
+    description: "Event-driven platform (FastAPI, SQS, DynamoDB) that parses GitHub commit & PR diffs to capture engineering trade-offs, then uses a RAG pipeline on Amazon Bedrock + OpenSearch to auto-generate evidence-backed Architectural Decision Records.",
+    technologies: ["Next.js", "FastAPI", "AWS Bedrock", "DynamoDB"],
+    link: "https://github.com/amanpandey2101",
+    preview: "#",
+    status: "AI Decision Intelligence Platform",
+    dateRange: "2025 - Present",
+    isLive: false,
+  },
+  {
+    title: "Multi-Agent Software Development Platform",
+    description: "A multi-agent system that automatically generates, tests, and evaluates code correctness — with specialized agents for static analysis, linting, and bug detection. Features DAG-based task scheduling, shared memory, secure tool execution, and a preference-based code ranking algorithm.",
+    technologies: ["Python", "FastAPI", "Next.js", "Prisma", "PostgreSQL"],
+    link: "https://github.com/amanpandey2101",
+    preview: "#",
+    status: "Agentic Dev Platform",
+    dateRange: "2025",
+    isLive: false,
+  },
+  {
     title: "Threddit - Reddit Clone",
     description: "Developed a full stack Reddit clone using Clerk for authentication, Vercel AI SDK to automate the flagging of user posting inappropiate or sensitive content and Sanity for headless CMS.",
     technologies: ["NextJS", "Shadcn UI", "Supabase"],
@@ -73,14 +93,14 @@ const projects: Project[] = [
     <div class="grid grid-cols-1 md:grid-cols-2  gap-8">
       {
         projects.map((project) => (
-          <SpotlightCard 
+          <SpotlightCard
             client:load
-            className="custom-spotlight-card group p-0 bg-[#0a0a0a] border-[var(--white-icon-tr)]"
-            spotlightColor="rgba(0, 229, 255, 0.2)"
+            className="custom-spotlight-card group p-0 bg-[#0a0e16] border-[var(--border)] rounded-2xl hover:border-[var(--border-hover)] transition-colors duration-300"
+            spotlightColor="rgba(6, 182, 212, 0.18)"
           >
             <div class="relative">
               {/* Project Header Image */}
-              <div class="w-full h-full py-10 md:h-56 bg-gradient-to-br from-[#5e4491] to-[#A476FF] flex items-center justify-center relative overflow-hidden rounded-t-2xl">
+              <div class="w-full h-full py-10 md:h-56 bg-gradient-to-br from-[#6366f1] via-[#3b82f6] to-[#06b6d4] flex items-center justify-center relative overflow-hidden rounded-t-2xl">
                 {/* Project Icon/Placeholder */}
                 <div class="text-6xl font-bold text-white/20 absolute inset-0 flex items-center justify-center">
                   {project.title.split(' ').map(word => word[0]).join('').toUpperCase()}
@@ -91,7 +111,11 @@ const projects: Project[] = [
                   <div class="text-sm opacity-80">{project.dateRange}</div>
                 </div>
                 {project.isLive && (
-                  <div class="absolute top-4 right-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                  <div class="absolute top-4 right-4 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm text-white px-2.5 py-1 rounded-full text-xs font-semibold border border-white/15">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                    </span>
                     LIVE
                   </div>
                 )}

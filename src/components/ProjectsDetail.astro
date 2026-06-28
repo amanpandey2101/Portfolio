@@ -1,0 +1,54 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/nav.astro";
+import SplashCursor from "../React/SplashCursor";
+import favicon from "/favicons/main.ico";
+
+interface Props {
+  pageTitle: string;
+  eyebrow?: string;
+  heading: string;
+  intro?: string;
+}
+
+const { pageTitle, eyebrow = "Projects", heading, intro } = Astro.props;
+---
+
+<Layout title={pageTitle} favicon={favicon}>
+  <Nav />
+  <div class="absolute inset-0 -z-10">
+    <SplashCursor client:load />
+  </div>
+
+  <section class="relative z-10 text-[var(--white)] mt-12 md:mt-0" id="home">
+    <div class="max-w-6xl mx-auto md:py-36 pb-20 px-4">
+      <header class="mb-10">
+        <a
+          href="/projects"
+          class="group inline-flex items-center gap-2 text-sm text-[var(--white-icon)] hover:text-[var(--sec)] transition-colors mb-5"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="w-4 h-4 transition-transform group-hover:-translate-x-1"
+          >
+            <path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z" />
+          </svg>
+          All projects
+        </a>
+        <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">{eyebrow}</h2>
+        <h1 class="text-4xl md:text-5xl font-medium text-gradient w-fit">
+          {heading}
+        </h1>
+        {intro && (
+          <p class="text-[var(--white-icon)] max-w-2xl mt-4 leading-relaxed">
+            {intro}
+          </p>
+        )}
+      </header>
+
+      <slot />
+    </div>
+  </section>
+</Layout>

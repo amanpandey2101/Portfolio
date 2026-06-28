@@ -27,6 +27,13 @@ const socialLinks = [
 const handleContact = () => {
   window.location.href = "mailto:paman7681@gmail.com";
 };
+
+// Condensed experience for the homepage — full details live on /experience
+const experienceHighlights = [
+  "Architected a multi-tenant enterprise platform (Next.js + Flask) with AI document processing, cutting manual review time by 80%.",
+  "Built autonomous LangGraph agents and RAG (FAISS) pipelines, plus edge inference (YOLO / RT-DETR) on Nvidia Jetson Orin.",
+  "Shipped AWS ECS Fargate backends, self-hosted SOC2 CI/CD, and a Prometheus + Grafana observability stack.",
+];
 ---
 
 <section class="text-[var(--white)] mt-12 md:mt-0" id="home">
@@ -43,12 +50,13 @@ const handleContact = () => {
             <h1
               class="text-[var(--white)] text-2xl md:text-5xl lg:text-6xl font-medium text-pretty leading-none"
             >
-              Full Stack Engineer
+              Full Stack & AI Engineer
             </h1>
             <p class="text-md md:text-xl text-[var(--white-icon)] max-w-prose">
-              B.Tech in Computer Science and Engineering from Amity University, Patna. 
-              Currently working as AI Associate & Full Stack Engineer at LiveSitter, 
-              passionate about developing innovative solutions and AI-powered applications.
+              B.Tech in Computer Science and Engineering from Amity University, Patna.
+              Software Development Engineer at LiveSitter, building scalable multi-tenant
+              platforms, autonomous AI agents, and edge inference systems — across the
+              full stack, the cloud, and bare-metal hardware.
             </p>
           </div>
 
@@ -60,7 +68,7 @@ const handleContact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                class="text-[var(--white-icon)] hover:text-white focus:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)] focus:bg-[var(--white-icon-tr)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#a476ff]"
+                class="text-[var(--white-icon)] hover:text-white focus:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)] focus:bg-[var(--white-icon-tr)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--sec)] hover:border-[var(--border-hover)] hover:-translate-y-0.5"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +91,7 @@ const handleContact = () => {
               avatarUrl="/assets/person.png"
               iconUrl="/assets/iconpattern.png"
               name="Aman Kumar Pandey"
-              title="AI Associate & Full Stack Engineer"
+              title="Software Development Engineer"
               handle="amanpandey2101"
               status="Available for opportunities"
               contactText="Contact Me"
@@ -125,7 +133,7 @@ const handleContact = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                       <path d="M7 1V3H3C2.44772 3 2 3.44772 2 4V20C2 20.5523 2.44772 21 3 21H21C21.5523 21 22 20.5523 22 20V4C22 3.44772 21.5523 3 21 3H17V1H15V3H9V1H7ZM4 9V19H20V9H4ZM6 11H8V13H6V11ZM6 15H8V17H6V15ZM10 11H18V13H10V11ZM10 15H15V17H10V15Z"/>
                     </svg>
-                    Jul 2022 - Present
+                    Jun 2022 - Jun 2026
                   </span>
                   <span class="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
@@ -137,7 +145,7 @@ const handleContact = () => {
               </div>
               <div class="flex flex-col md:items-end items-center">
                 <div class="text-right">
-                  <div class="text-3xl font-bold text-[var(--sec)] mb-1">8.93</div>
+                  <div class="text-3xl font-bold text-[var(--sec)] mb-1">8.89</div>
                   <div class="text-sm text-[var(--white-icon)]">CGPA</div>
                 </div>
                 <div class="mt-3 px-3 py-1 bg-[var(--sec)] bg-opacity-20 text-white rounded-full text-xs font-medium">
@@ -254,45 +262,99 @@ const handleContact = () => {
       </div>
     </div>
 
+    <!-- Experience Section -->
+    <div class="py-12 border-t border-[#ffffff10]">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Where I've worked</h2>
+        <h3 class="text-2xl md:text-5xl font-medium text-[var(--white)] mb-8">Experience</h3>
+
+        <div class="bg-[#1414149c] rounded-2xl p-6 md:p-8 border border-[var(--white-icon-tr)] transition-all hover:border-[var(--sec)]/40">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
+            <div>
+              <div class="flex items-center gap-3 flex-wrap">
+                <h4 class="text-2xl font-semibold text-[var(--white)]">
+                  Software Development Engineer
+                </h4>
+                <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-medium">
+                  Current
+                </span>
+              </div>
+              <p class="text-lg text-[var(--sec)] font-medium mt-1">
+                LiveSitter
+                <span class="text-[var(--white-icon)] font-normal"> · Contract</span>
+              </p>
+            </div>
+            <div class="flex flex-col md:items-end text-sm text-[var(--white-icon)] gap-1">
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                  <path d="M7 1V3H3C2.44772 3 2 3.44772 2 4V20C2 20.5523 2.44772 21 3 21H21C21.5523 21 22 20.5523 22 20V4C22 3.44772 21.5523 3 21 3H17V1H15V3H9V1H7ZM4 9V19H20V9H4ZM6 11H8V13H6V11ZM6 15H8V17H6V15ZM10 11H18V13H10V11ZM10 15H15V17H10V15Z"/>
+                </svg>
+                Oct 2024 - Present
+              </span>
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                  <path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2ZM12 4.84L17.84 19.16L12 16.71L6.16 19.16L12 4.84Z"/>
+                </svg>
+                Atlanta, GA (Remote)
+              </span>
+            </div>
+          </div>
+
+          <ul class="space-y-3">
+            {experienceHighlights.map((point) => (
+              <li class="flex gap-3 text-[var(--white-icon)] leading-relaxed text-sm md:text-base">
+                <span class="text-[var(--sec)] mt-1 flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+                    <path d="M10.5858 13.4142L7.75735 10.5858L6.34314 12L10.5858 16.2426L17.6569 9.17157L16.2427 7.75736L10.5858 13.4142Z"/>
+                  </svg>
+                </span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="/experience"
+            class="inline-flex items-center gap-2 mt-6 text-[var(--sec)] hover:text-white transition-colors text-sm font-medium"
+          >
+            View full experience
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+              <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!-- Skills section -->
-    <div class="flex flex-col lg:flex-row items-center gap-8">
-      <SkillsList client:load />
-      <div
-        class="flex justify-center md:w-full md:h-[45vh] size-[290px] pt-3 md:pt-9 md:ml-16"
-      >
-        <LetterGlitch
-          client:load
-          glitchColors={["#5e4491", "#A476FF", "#241a38"]}
-          glitchSpeed={33}
-          centerVignette={false}
-          outerVignette={true}
-          smooth={true}
-        />
+    <div class="py-12 border-t border-[#ffffff10]">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My toolkit</h2>
+            <h3 class="text-2xl md:text-5xl font-medium text-[var(--white)]">What I do</h3>
+          </div>
+          <div class="hidden md:block w-[180px] h-[60px] rounded-xl overflow-hidden border border-[var(--white-icon-tr)] opacity-80">
+            <LetterGlitch
+              client:visible
+              glitchColors={["#1e293b", "#6366f1", "#06b6d4"]}
+              glitchSpeed={40}
+              centerVignette={false}
+              outerVignette={true}
+              smooth={true}
+            />
+          </div>
+        </div>
+        <SkillsList client:load />
       </div>
     </div>
   </div>
 </section>
 
 <style is:global>
-  /* Shiny text animation effect */
-  .shiny-sec {
-    background: linear-gradient(135deg, #a476ff 25%, #eee5ff 50%, #a476ff 75%);
-    background-size: 400% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shine 3s linear infinite;
-  }
-
-  @keyframes shine {
-    0% { background-position: 100% 50%; }
-    30%, 70% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
-  }
-  
   /* Focus styles for accessibility */
   :focus-visible {
-    outline: 2px solid #a476ff;
+    outline: 2px solid var(--sec);
     outline-offset: 2px;
   }
 

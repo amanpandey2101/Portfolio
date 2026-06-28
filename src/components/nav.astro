@@ -16,11 +16,11 @@ const navItems: NavItem[] = [
     href: "/projects",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2 3 3 3H10.4142L12.4142 5Z"></path></svg>`,
   },
-  // {
-  //   label: "Experience",
-  //   href: "/experience",
-  //   icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4 5V19H20V7H11.5858L9.58579 5H4ZM12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2 3 3 3H10.4142L12.4142 5Z"></path></svg>`,
-  // },
+  {
+    label: "Experience",
+    href: "/experience",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M7 5V2C7 1.44772 7.44772 1 8 1H16C16.5523 1 17 1.44772 17 2V5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V6C2 5.44772 2.44772 5 3 5H7ZM4 13V19H20V13H15V15H9V13H4ZM4 7V11H9V9H15V11H20V7H4ZM9 3V5H15V3H9Z"></path></svg>`,
+  },
   {
     label: "Resume",
     href: "https://drive.google.com/file/d/1lnqf0yg6h3lhwFaTqIhon7LYjHKr9WHV/view?usp=sharing",
@@ -42,455 +42,178 @@ const navItems: NavItem[] = [
 <div class="flex justify-center w-full">
   <nav
     id="main-nav"
-    class="fixed flex left-0 right-0 z-[100] bg-[rgba(20,20,20,0.85)] border border-t border-[#ffffff15] text-[var(--white)] backdrop-blur-2xl transition-all md:top-0 md:bottom-auto bottom-0 md:w-[48rem] rounded-t-3xl md:rounded-3xl md:mt-6 md:justify-self-center shadow-2xl"
+    class="fixed left-0 right-0 z-[100] text-[var(--white)] md:top-0 md:bottom-auto bottom-0 md:w-auto md:mt-5 md:justify-self-center"
   >
-    <div 
-      class="container mx-auto flex justify-center items-center md:py-3 py-4 px-4 relative"
+    <ul
+      id="nav-list"
+      class="relative flex w-full justify-between md:justify-center items-stretch md:gap-1 gap-0 px-1.5 md:px-2 py-2 md:py-2 bg-[rgba(13,18,32,0.7)] border border-[var(--border)] md:rounded-2xl rounded-t-2xl backdrop-blur-2xl"
     >
-      <!-- Sliding Active Indicator -->
-      <div 
-        id="nav-indicator" 
-        class="absolute bg-gradient-to-r from-[var(--sec)] to-[#ec4899] rounded-xl transition-all duration-500 ease-out opacity-0 md:h-10 h-16 z-0 shadow-lg"
-        style="transform: translateX(0px); width: auto;"
-      ></div>
-      
-      <ul
-        class="flex w-full justify-between md:space-x-4 md:justify-center md:gap-8 gap-6 relative z-10"
-      >
-        {
-          navItems.map((item, index) => (
-            <li class="flex-1 md:flex-none">
-              <a
-                href={item.href}
-                data-nav-item={index}
-                class="nav-link flex flex-col items-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-colors text-sm md:text-base relative md:px-4 px-3 md:py-2 py-3 rounded-xl group"
-                target={item.href.startsWith('http') ? '_blank' : '_self'}
-                rel={item.href.startsWith('http') ? 'noopener noreferrer' : ''}
-              >
-                <span class="md:hidden flex items-center justify-center w-6 h-6 group-hover:scale-110 transition-transform duration-200">
-                  <fragment set:html={item.icon} />
-                </span>
-                <span class="hidden md:inline-block font-semibold tracking-wide">{item.label}</span>
-                <span class="md:hidden text-xs font-medium">{item.label}</span>
-                
-                <!-- Hover glow effect -->
-                <div class="absolute inset-0 bg-gradient-to-r from-[var(--sec)] to-[#ec4899] rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"></div>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+      <!-- Sliding active pill (positioned relative to this <ul>) -->
+      <span
+        id="nav-indicator"
+        aria-hidden="true"
+        class="absolute top-2 bottom-2 left-0 rounded-xl opacity-0 z-0 pointer-events-none"
+      ></span>
+
+      {
+        navItems.map((item, index) => (
+          <li class="flex-1 md:flex-none">
+            <a
+              href={item.href}
+              data-nav-item={index}
+              class="nav-link relative z-10 flex flex-col md:flex-row items-center justify-center gap-1 text-[var(--white-icon)] hover:text-[var(--white)] transition-colors duration-300 text-sm md:text-[0.95rem] md:px-4 px-1 md:py-2 py-2 rounded-xl"
+              target={item.href.startsWith('http') ? '_blank' : '_self'}
+              rel={item.href.startsWith('http') ? 'noopener noreferrer' : ''}
+            >
+              <span class="md:hidden flex items-center justify-center w-6 h-6">
+                <fragment set:html={item.icon} />
+              </span>
+              <span class="hidden md:inline-block font-medium tracking-wide">{item.label}</span>
+              <span class="md:hidden text-[0.65rem] font-medium">{item.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </nav>
 </div>
 
-<!-- GSAP CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-
 <script>
-  // Enhanced Navigation with GSAP animations
-  window.addEventListener('load', () => {
-    const gsap = window['gsap'];
-    if (!gsap) {
-      console.error('GSAP not loaded');
-      return;
-    }
-    
-    const navLinks = document.querySelectorAll(".nav-link");
-    const navIndicator = document.getElementById("nav-indicator");
-    const sections = document.querySelectorAll("section[id]");
-    let currentActiveIndex = 0;
-    
-    // Initialize navbar with entrance animation
-    gsap.fromTo('#main-nav', 
-      { 
-        y: -100, 
-        opacity: 0 
-      },
-      { 
-        y: 0, 
-        opacity: 1, 
-        duration: 1,
-        ease: "back.out(1.7)",
-        delay: 0.5
-      }
-    );
-    
-    // Initialize indicator position with animation
-    const initializeIndicator = () => {
-      const activeLink = document.querySelector('.nav-link.active') || navLinks[0];
-      if (activeLink && navIndicator) {
-        const rect = activeLink.getBoundingClientRect();
-        const navRect = document.getElementById('main-nav')?.getBoundingClientRect();
-        
-        if (navRect) {
-          const offsetX = rect.left - navRect.left;
-          const width = rect.width;
-          
-          // Initial setup with scale animation
-          gsap.set(navIndicator, {
-            x: offsetX,
-            width: width,
-            scale: 0,
-            opacity: 0
-          });
-          
-          gsap.to(navIndicator, {
-            scale: 1,
-            opacity: 1,
-            duration: 0.6,
-            ease: "back.out(1.7)",
-            delay: 1.2
-          });
-        }
-      }
+  // Lightweight, robust nav: the pill is positioned inside the <ul> using
+  // offsetLeft/offsetWidth (immune to padding/transform), so it never smears.
+  function initNav() {
+    const list = document.getElementById('nav-list');
+    const indicator = document.getElementById('nav-indicator');
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav-link'));
+    if (!list || !indicator || links.length === 0) return;
+
+    let current = 0;
+
+    const moveIndicator = (el: HTMLElement | null, animate = true) => {
+      if (!el) return;
+      indicator.style.transition = animate
+        ? 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease'
+        : 'none';
+      indicator.style.width = `${el.offsetWidth}px`;
+      indicator.style.transform = `translateX(${el.offsetLeft}px)`;
+      indicator.style.opacity = '1';
     };
-    
-    // Enhanced indicator movement with elastic animation
-    const moveIndicator = (targetElement, index) => {
-      if (!targetElement || !navIndicator) return;
-      
-      const rect = targetElement.getBoundingClientRect();
-      const navRect = document.getElementById('main-nav')?.getBoundingClientRect();
-      
-      if (navRect) {
-        const offsetX = rect.left - navRect.left;
-        const width = rect.width;
-        
-        // Create elastic movement animation
-        gsap.to(navIndicator, {
-          x: offsetX,
-          width: width,
-          duration: 0.8,
-          ease: "elastic.out(1, 0.5)",
-          onStart: () => {
-            // Pulse effect during transition
-            gsap.to(navIndicator, {
-              scale: 1.05,
-              duration: 0.2,
-              yoyo: true,
-              repeat: 1,
-              ease: "power2.inOut"
-            });
-          }
-        });
-      }
-      
-      currentActiveIndex = index;
+
+    const setActive = (index: number, animate = true) => {
+      current = index;
+      links.forEach((link, i) => link.classList.toggle('active', i === index));
+      moveIndicator(links[index], animate);
     };
-    
-    // Enhanced active state updates with color animations
-    const updateActiveStates = (activeIndex) => {
-      navLinks.forEach((link, index) => {
-        link.classList.toggle('active', index === activeIndex);
-        
-        if (index === activeIndex) {
-          // Active state animations
-          gsap.to(link, { 
-            color: '#ffffff', 
-            scale: 1.02,
-            duration: 0.4,
-            ease: "back.out(1.7)"
-          });
-          
-          // Icon animation for mobile
-          const icon = link.querySelector('span:first-child');
-          if (icon) {
-            gsap.to(icon, {
-              scale: 1.1,
-              duration: 0.3,
-              ease: "back.out(1.7)"
-            });
-          }
-        } else {
-          // Inactive state animations
-          gsap.to(link, { 
-            color: 'var(--white-icon)', 
-            scale: 1,
-            duration: 0.3 
-          });
-          
-          // Reset icon scale for mobile
-          const icon = link.querySelector('span:first-child');
-          if (icon) {
-            gsap.to(icon, {
-              scale: 1,
-              duration: 0.3
-            });
-          }
-        }
+
+    const activeFromLocation = () => {
+      const path = window.location.pathname.replace(/\/$/, '') || '/';
+      const hash = window.location.hash;
+      let idx = 0;
+      links.forEach((link, i) => {
+        const href = link.getAttribute('href') || '';
+        if (href.startsWith('http')) return; // external links never "active"
+        const cleanHref = href.replace(/\/$/, '');
+        if (cleanHref === path) idx = i;
+        // sub-routes (e.g. /projects/systems) highlight their section root
+        else if (cleanHref !== '/' && cleanHref && path.startsWith(cleanHref + '/')) idx = i;
+        else if (path === '/' && href.startsWith('/#') && hash && href.endsWith(hash)) idx = i;
       });
+      return idx;
     };
-    
-    // Enhanced click effect with ripple animation
-    const createClickEffect = (element, event) => {
-      const rect = element.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      
-      // Create single ripple effect
-      const ripple = document.createElement('div');
-      ripple.style.cssText = `
-        position: absolute;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(164, 118, 255, 0.4), rgba(236, 72, 153, 0.2));
-        width: 20px;
-        height: 20px;
-        left: ${x - 10}px;
-        top: ${y - 10}px;
-        pointer-events: none;
-        z-index: 1000;
-      `;
-      
-      element.appendChild(ripple);
-      
-      // Ripple animation
-      gsap.fromTo(ripple, 
-        { 
-          scale: 0,
-          opacity: 0.8 
+
+    // Smooth scroll for in-page hash links + active update on click
+    links.forEach((link, index) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href') || '';
+        if (href.startsWith('/#')) {
+          const target = document.getElementById(href.substring(2));
+          if (target) {
+            e.preventDefault();
+            const top = target.getBoundingClientRect().top + window.scrollY - 90;
+            window.scrollTo({ top, behavior: 'smooth' });
+            history.pushState(null, '', href);
+          }
+        }
+        setActive(index);
+      });
+    });
+
+    // Scroll-spy on the homepage
+    if ((window.location.pathname.replace(/\/$/, '') || '/') === '/') {
+      const sections = document.querySelectorAll('section[id]');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const id = entry.target.getAttribute('id');
+            const i = links.findIndex((l) => l.getAttribute('href') === `/#${id}`);
+            if (i !== -1 && i !== current) setActive(i);
+          });
         },
-        { 
-          scale: 3,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          onComplete: () => {
-            ripple.remove();
-          }
-        }
+        { threshold: 0.35, rootMargin: '-90px 0px -45% 0px' }
       );
-      
-      // Button press animation
-      gsap.to(element, {
-        scale: 0.95,
-        duration: 0.1,
-        yoyo: true,
-        repeat: 1,
-        ease: "power2.inOut",
-        transformOrigin: "center center"
-      });
-    };
-    
-    // Enhanced smooth scrolling with GSAP
-    const handleSmoothScroll = (targetId) => {
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        gsap.to(window, {
-          duration: 1.5,
-          scrollTo: {
-            y: targetElement,
-            offsetY: 100
-          },
-          ease: "power3.inOut"
-        });
-      }
-    };
-    
-    // Set active state based on current path or scroll position
-    const setActiveBasedOnLocation = () => {
-      const currentPath = window.location.pathname;
-      const currentHash = window.location.hash;
-      
-      let activeIndex = 0;
-      
-      navLinks.forEach((link, index) => {
-        const href = link.getAttribute("href");
-        
-        if (href === currentPath || 
-            href === currentPath + '/' || 
-            (currentPath === '/' && href?.startsWith('/#') && href.includes(currentHash.substring(1)))) {
-          activeIndex = index;
-        }
-      });
-      
-      updateActiveStates(activeIndex);
-      moveIndicator(navLinks[activeIndex], activeIndex);
-    };
-    
-    // Enhanced Intersection Observer for scroll-based highlighting
-    if (window.location.pathname === '/') {
-      const observerOptions = { 
-        threshold: 0.3,
-        rootMargin: '-100px 0px -50% 0px'
-      };
-      
-      const observerCallback = (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute("id");
-            const activeLink = document.querySelector(`nav a[href="/#${id}"]`);
-            
-            if (activeLink) {
-              const index = Array.from(navLinks).indexOf(activeLink);
-              if (index !== -1 && index !== currentActiveIndex) {
-                updateActiveStates(index);
-                moveIndicator(activeLink, index);
-              }
-            }
-          }
-        });
-      };
-
-      const observer = new IntersectionObserver(observerCallback, observerOptions);
-      sections.forEach((section) => observer.observe(section));
+      sections.forEach((s) => observer.observe(s));
     }
 
-    // Enhanced click handlers with advanced animations
-    navLinks.forEach((link, index) => {
-      const linkElement = link;
-      if (linkElement instanceof HTMLElement) {
-        linkElement.style.position = 'relative';
-        linkElement.style.overflow = 'hidden';
-      }
-      
-      link.addEventListener("click", function (e) {
-        const href = this.getAttribute("href");
-        
-        // Create enhanced click effect
-        createClickEffect(this, e);
-        
-        // Handle internal hash links
-        if (href?.startsWith("/#")) {
-          e.preventDefault();
-          const targetId = href.substring(2);
-          handleSmoothScroll(targetId);
-          history.pushState(null, '', href);
-        }
-        
-        // Update active state with animation
-        updateActiveStates(index);
-        moveIndicator(this, index);
-        
-        // Enhanced external link handling
-        if (href?.startsWith('http')) {
-          e.preventDefault();
-          
-          // Loading animation
-          gsap.to(this, {
-            scale: 1.05,
-            duration: 0.2,
-            yoyo: true,
-            repeat: 1,
-            onComplete: () => {
-              window.open(href, '_blank', 'noopener,noreferrer');
-            }
-          });
-        }
-      });
-      
-      // Enhanced hover effects
-      link.addEventListener("mouseenter", function() {
-        if (!this.classList.contains('active')) {
-          gsap.to(this, { 
-            color: 'var(--white)',
-            scale: 1.02,
-            duration: 0.3,
-            ease: "power2.out"
-          });
-          
-          // Icon hover animation
-          const icon = this.querySelector('span:first-child');
-          if (icon) {
-            gsap.to(icon, {
-              scale: 1.1,
-              rotation: 3,
-              duration: 0.3,
-              ease: "back.out(1.7)"
-            });
-          }
-        }
-      });
-      
-      link.addEventListener("mouseleave", function() {
-        if (!this.classList.contains('active')) {
-          gsap.to(this, { 
-            color: 'var(--white-icon)',
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out"
-          });
-          
-          // Reset icon animation
-          const icon = this.querySelector('span:first-child');
-          if (icon) {
-            gsap.to(icon, {
-              scale: 1,
-              rotation: 0,
-              duration: 0.3,
-              ease: "back.out(1.7)"
-            });
-          }
-        }
-      });
+    // Initial placement (no animation), then enable transitions
+    requestAnimationFrame(() => {
+      setActive(activeFromLocation(), false);
+      requestAnimationFrame(() => moveIndicator(links[current], false));
     });
-    
-    // Initialize with delay for smooth entrance
-    setTimeout(() => {
-      initializeIndicator();
-      setActiveBasedOnLocation();
-    }, 200);
-    
-    // Handle browser navigation
-    window.addEventListener('popstate', setActiveBasedOnLocation);
-    
-    // Enhanced window resize handling
-    window.addEventListener('resize', () => {
-      const activeLink = document.querySelector('.nav-link.active');
-      if (activeLink) {
-        const index = Array.from(navLinks).indexOf(activeLink);
-        // Smooth reposition on resize
-        setTimeout(() => {
-          moveIndicator(activeLink, index);
-        }, 100);
-      }
-    });
-  });
+
+    window.addEventListener('popstate', () => setActive(activeFromLocation()));
+    window.addEventListener('resize', () => moveIndicator(links[current], false));
+    window.addEventListener('load', () => moveIndicator(links[current], false));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNav);
+  } else {
+    initNav();
+  }
 </script>
 
 <style>
   @media (max-width: 767px) {
     body {
-      padding-bottom: 80px;
+      padding-bottom: 84px;
     }
+  }
+
+  /* Entrance animation lives on the inner <ul>, NOT on the fixed <nav>.
+     A lingering transform on a position:fixed element breaks viewport
+     pinning (it becomes the containing block), so the nav must stay
+     transform-free. */
+  #nav-list {
+    animation: navIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: 0.3s;
+  }
+  @keyframes navIn {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 767px) {
+    @keyframes navIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  #nav-list {
+    box-shadow:
+      0 12px 40px -8px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  #nav-indicator {
+    background: linear-gradient(120deg, rgba(99, 102, 241, 0.95), rgba(6, 182, 212, 0.9));
+    box-shadow:
+      0 6px 20px -4px rgba(99, 102, 241, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
   }
 
   .nav-link.active {
     color: #ffffff !important;
-  }
-  
-  .nav-link {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-  }
-  
-  .nav-link:hover {
-    transform: translateY(-1px);
-  }
-  
-  #nav-indicator {
-    box-shadow: 
-      0 4px 20px rgba(164, 118, 255, 0.3),
-      0 2px 8px rgba(236, 72, 153, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-  
-  #main-nav {
-    box-shadow: 
-      0 10px 30px rgba(0, 0, 0, 0.3),
-      0 4px 12px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
-  
-  /* Smooth scrolling behavior */
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Enhanced glassmorphism */
-  #main-nav {
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    font-weight: 600;
   }
 </style>

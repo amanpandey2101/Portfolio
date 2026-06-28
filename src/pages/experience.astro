@@ -1,15 +1,187 @@
 ---
 import Nav from "@/components/nav.astro";
 import Layout from "@/layouts/Layout.astro";
+import SplashCursor from "../React/SplashCursor";
 
 import favicon from "/favicons/main.ico";
+
+interface ExperienceItem {
+  company: string;
+  role: string;
+  type: string;
+  location: string;
+  dateRange: string;
+  current: boolean;
+  highlights: string[];
+  stack: string[];
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    company: "LiveSitter",
+    role: "Software Development Engineer",
+    type: "Contract",
+    location: "Atlanta, GA (Remote)",
+    dateRange: "Oct 2024 — Present",
+    current: true,
+    highlights: [
+      "Architected a scalable, multi-tenant enterprise platform using Next.js and Flask, implementing AI-driven document processing, classification, and compliance tracking with a custom template engine to reduce manual review time by 80%.",
+      "Engineered an autonomous LangGraph-powered conversational agent and RAG (FAISS) pipelines integrated into the admin support portal to automate candidate messaging and text-based screening.",
+      "Developed Python-based edge inference software on Nvidia Jetson Orin running local YOLO and RT-DETR models; routed critical alerts via local network or cloud push notifications and SMS to the customer.",
+      "Deployed backend services on AWS ECS Fargate behind ALBs with auto-scaling; implemented secure credential workflows via Secrets Manager, Lambda functions, and automated S3/database cleanup cron jobs.",
+      "Built self-hosted CI/CD pipelines to meet SOC2 compliance standards, and deployed a Prometheus and Grafana observability stack to monitor system load, inferencing pipelines, and worker health.",
+      "Engineered a Go-based on-demand snapshot API that downsampled 30 FPS RTSP inputs to 1 FPS via FFmpeg keyframe decoding, cutting CPU usage by 30% and scaling to 40+ cameras per edge box.",
+      "Engineered a fault-tolerant C++ orchestration layer using the Sophgo SDK, featuring self-healing process supervisors and auto-restart logic to ensure 99.9% uptime at the hardware edge.",
+      "Led code reviews, PR reviews, and unit testing across the full stack in an Agile workflow; collaborated cross-functionally with product, design, and QA to define solutions and estimate scope of work.",
+    ],
+    stack: [
+      "Next.js",
+      "Flask",
+      "Python",
+      "Go",
+      "C++",
+      "LangGraph",
+      "RAG / FAISS",
+      "AWS ECS Fargate",
+      "Jetson Orin",
+      "Prometheus",
+      "Grafana",
+    ],
+  },
+];
+
+const achievements = [
+  {
+    title: "First Runner-Up — AI for Bharat by AWS 2026 Hackathon",
+    description:
+      "Secured 1st Runner-Up at Amazon Web Services' AI for Bharat 2026 Hackathon.",
+    link: "#",
+  },
+  {
+    title: "Indian Army Recognition",
+    description:
+      "Awarded by the Indian Army for the impact of the HAKS welfare infrastructure project.",
+    link: "#",
+  },
+  {
+    title: "Head of ASET AIKYAM",
+    description:
+      "Led 200+ students as Head of ASET AIKYAM, organizing technical workshops and hackathons.",
+    link: "#",
+  },
+];
 ---
 
-<Nav />
 <Layout title="Aman Kumar Pandey | Experience" favicon={favicon}>
-    <section class="text-[var(--white)] mt-12 md:mt-0" id="home">
-        <div class="max-w-5xl mx-auto space-y-8 md:py-36 pb-14">
-            <h3 class="text-4xl md:text-5xl font-medium mb-8">Experience</h3>
+  <Nav />
+  <div class="absolute inset-0 -z-10">
+    <SplashCursor client:load />
+  </div>
+
+  <section class="relative z-10 text-[var(--white)] mt-12 md:mt-0" id="home">
+    <div class="max-w-5xl mx-auto space-y-12 md:py-36 pb-14 px-1">
+      <!-- Header -->
+      <header class="space-y-3">
+        <h2 class="text-lg text-[var(--sec)] shiny-sec">Where I've worked</h2>
+        <h1 class="text-4xl md:text-5xl font-medium">Experience</h1>
+        <p class="text-[var(--white-icon)] max-w-2xl">
+          Building production systems across the stack — from AI-driven enterprise
+          platforms and autonomous agents to edge inference on bare metal and the
+          cloud infrastructure that runs it all.
+        </p>
+      </header>
+
+      <!-- Experience timeline -->
+      <div class="space-y-8">
+        {
+          experiences.map((exp) => (
+            <article class="relative bg-[#1414149c] rounded-2xl p-6 md:p-8 border border-[var(--white-icon-tr)] transition-all hover:border-[var(--sec)]/40">
+              <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+                <div>
+                  <div class="flex items-center gap-3 flex-wrap">
+                    <h3 class="text-2xl font-semibold text-[var(--white)]">
+                      {exp.role}
+                    </h3>
+                    {exp.current && (
+                      <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-medium">
+                        Current
+                      </span>
+                    )}
+                  </div>
+                  <p class="text-lg text-[var(--sec)] font-medium mt-1">
+                    {exp.company}
+                    <span class="text-[var(--white-icon)] font-normal">
+                      {" "}· {exp.type}
+                    </span>
+                  </p>
+                </div>
+                <div class="flex flex-col md:items-end text-sm text-[var(--white-icon)] gap-1">
+                  <span class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                      <path d="M7 1V3H3C2.44772 3 2 3.44772 2 4V20C2 20.5523 2.44772 21 3 21H21C21.5523 21 22 20.5523 22 20V4C22 3.44772 21.5523 3 21 3H17V1H15V3H9V1H7ZM4 9V19H20V9H4ZM6 11H8V13H6V11ZM6 15H8V17H6V15ZM10 11H18V13H10V11ZM10 15H15V17H10V15Z" />
+                    </svg>
+                    {exp.dateRange}
+                  </span>
+                  <span class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                      <path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2ZM12 4.84L17.84 19.16L12 16.71L6.16 19.16L12 4.84Z" />
+                    </svg>
+                    {exp.location}
+                  </span>
+                </div>
+              </div>
+
+              <ul class="space-y-3 mb-6">
+                {exp.highlights.map((point) => (
+                  <li class="flex gap-3 text-[var(--white-icon)] leading-relaxed">
+                    <span class="text-[var(--sec)] mt-1.5 flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+                        <path d="M10.5858 13.4142L7.75735 10.5858L6.34314 12L10.5858 16.2426L17.6569 9.17157L16.2427 7.75736L10.5858 13.4142Z" />
+                      </svg>
+                    </span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="flex flex-wrap gap-2 border-t border-[var(--white-icon-tr)] pt-5">
+                {exp.stack.map((tech) => (
+                  <span class="px-3 py-1 bg-[var(--sec)]/10 text-[var(--white)] rounded-full text-xs font-medium border border-[var(--sec)]/30">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <!-- Achievements & Leadership -->
+      <div class="border-t border-[#ffffff10] pt-12">
+        <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Beyond the code</h2>
+        <h3 class="text-3xl md:text-4xl font-medium mb-8">
+          Achievements & Leadership
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {
+            achievements.map((item) => (
+              <div class="bg-[#1414149c] rounded-2xl p-6 border border-[var(--white-icon-tr)] transition-all hover:border-[var(--sec)]/40">
+                <div class="w-10 h-10 rounded-xl bg-[var(--sec)]/15 flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-[var(--sec)]">
+                    <path d="M13.0001 10.9999L22.0002 1.99982L23.4144 3.41403L14.4143 12.4141L13.0001 10.9999ZM13.4144 18.0002L22.0002 18.0002L22.0002 20.0002L13.4144 20.0002L13.4144 18.0002ZM2.00024 13.0002L11.0002 4.00021L12.4144 5.41443L4.41446 13.4144L11.4143 20.4143L10.0001 21.8285L2.00024 13.8287L2.00024 13.0002Z" />
+                  </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-[var(--white)] mb-2 leading-snug">
+                  {item.title}
+                </h4>
+                <p class="text-sm text-[var(--white-icon)] leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            ))
+          }
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </Layout>

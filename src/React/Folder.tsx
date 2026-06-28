@@ -179,7 +179,7 @@ const Folder: React.FC<FolderProps> = ({
         </div>
       </div>
       {label && (
-        <span className="text-zinc-400 text-[10px] font-medium">
+        <span className="text-zinc-300 text-xs md:text-sm font-semibold text-center leading-tight max-w-[8rem] md:max-w-none mt-1">
           <ShinyText
             text={label}
             disabled={false}

@@ -1,0 +1,57 @@
+---
+import ProjectsDetail from "@/components/ProjectsDetail.astro";
+import ProjectCard, { type ProjectCardData } from "@/components/ProjectCard.astro";
+
+const projects: ProjectCardData[] = [
+  {
+    title: "Memora.dev — AI Decision Intelligence",
+    description:
+      "Event-driven platform (FastAPI, SQS, DynamoDB) that parses GitHub commit & PR diffs to capture engineering trade-offs, then runs a RAG pipeline on Amazon Bedrock + OpenSearch to auto-generate evidence-backed Architectural Decision Records.",
+    technologies: ["Next.js", "FastAPI", "AWS Bedrock", "DynamoDB", "OpenSearch", "ECS Fargate"],
+    link: "https://github.com/amanpandey2101",
+    preview: "#",
+    status: "In Progress",
+    date: "2025",
+    initials: "MD",
+  },
+  {
+    title: "Multi-Agent Software Development Platform",
+    description:
+      "A multi-agent system that automatically generates, tests, and evaluates code correctness — with specialized agents for static analysis, linting, and bug detection. Features DAG-based task scheduling, shared memory, secure tool execution, and a preference-based code ranking algorithm.",
+    technologies: ["Python", "FastAPI", "Next.js", "Prisma", "PostgreSQL", "Multi-Agent"],
+    link: "https://github.com/amanpandey2101",
+    preview: "#",
+    status: "2025",
+    date: "2025",
+    initials: "MAF",
+  },
+  {
+    title: "Edge Inference Platform — Nvidia Jetson Orin",
+    description:
+      "Python-based edge inference software running local YOLO and RT-DETR models on Jetson Orin, routing critical alerts via local network, cloud push notifications, and SMS. Paired with a Go snapshot API that downsamples 30 FPS RTSP to 1 FPS via FFmpeg keyframe decoding — cutting CPU 30% and scaling to 40+ cameras per box.",
+    technologies: ["Python", "Go", "YOLO", "RT-DETR", "FFmpeg", "Jetson Orin"],
+    status: "Production · LiveSitter",
+    date: "2024 – Present",
+    initials: "EI",
+  },
+  {
+    title: "Cloud Infrastructure & Observability",
+    description:
+      "Backend services on AWS ECS Fargate behind ALBs with auto-scaling, secure credential workflows via Secrets Manager & Lambda, self-hosted CI/CD meeting SOC2 standards, and a Prometheus + Grafana stack monitoring system load, inference pipelines, and worker health. Fault-tolerant C++ orchestration (Sophgo SDK) ensures 99.9% uptime at the edge.",
+    technologies: ["AWS", "Terraform", "Docker", "Prometheus", "Grafana", "C++", "CI/CD"],
+    status: "Production · LiveSitter",
+    date: "2024 – Present",
+    initials: "CI",
+  },
+];
+---
+
+<ProjectsDetail
+  pageTitle="Aman Kumar Pandey | AI & Backend Systems"
+  heading="AI & Backend Systems"
+  intro="Production AI infrastructure, autonomous agent platforms, and the cloud + edge systems that run them — the engineering behind the products."
+>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</ProjectsDetail>
